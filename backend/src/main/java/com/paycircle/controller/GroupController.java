@@ -5,6 +5,7 @@ import com.paycircle.service.GroupService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import java.util.List;
 @RequestMapping("/api/groups")
 @RequiredArgsConstructor
 @Tag(name = "Group Management", description = "Endpoints for creating groups, managing members by phone, and group metadata")
+    
 public class GroupController {
 
     private final GroupService groupService;
@@ -23,12 +25,14 @@ public class GroupController {
     @PostMapping
     @Operation(summary = "Create a new group", description = "Current user becomes admin; optionally invite members by phone number")
     public ResponseEntity<GroupResponse> createGroup(@Valid @RequestBody CreateGroupRequest request) {
+        
         return new ResponseEntity<>(groupService.createGroup(request), HttpStatus.CREATED);
     }
 
     @GetMapping
     @Operation(summary = "Get all groups for current user")
     public ResponseEntity<List<GroupResponse>> getUserGroups() {
+        
         return ResponseEntity.ok(groupService.getUserGroups());
     }
 
