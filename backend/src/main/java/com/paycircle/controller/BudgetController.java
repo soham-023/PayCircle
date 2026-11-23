@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,7 @@ import java.util.List;
 public class BudgetController {
 
     private final BudgetService budgetService;
+    
 
     @PostMapping
     @Operation(summary = "Create a spending budget", description = "Can be set for a group or personal category for a specific month/year")
@@ -31,6 +33,7 @@ public class BudgetController {
     @Operation(summary = "Get budgets and real-time spending status for a group")
     public ResponseEntity<List<BudgetResponse>> getGroupBudgets(
             @PathVariable Long groupId,
+        
             @RequestParam(required = false) Integer month,
             @RequestParam(required = false) Integer year) {
         return ResponseEntity.ok(budgetService.getGroupBudgets(groupId, month, year));
@@ -39,6 +42,7 @@ public class BudgetController {
     @GetMapping("/my")
     @Operation(summary = "Get personal budgets and spending status")
     public ResponseEntity<List<BudgetResponse>> getUserBudgets(
+        
             @RequestParam(required = false) Integer month,
             @RequestParam(required = false) Integer year) {
         return ResponseEntity.ok(budgetService.getUserBudgets(month, year));
