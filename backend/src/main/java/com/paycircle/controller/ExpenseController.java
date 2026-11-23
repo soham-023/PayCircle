@@ -6,6 +6,7 @@ import com.paycircle.service.ExpenseService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,15 +16,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/expenses")
+    
 @RequiredArgsConstructor
 @Tag(name = "Expense Management", description = "Endpoints for creating and managing expenses with Equal, Exact, Percentage, and Shares splits")
 public class ExpenseController {
 
     private final ExpenseService expenseService;
+    
 
     @PostMapping
     @Operation(summary = "Add a new expense", description = "Supports EQUAL, EXACT, PERCENTAGE, and SHARES split types")
     public ResponseEntity<ExpenseResponse> createExpense(@Valid @RequestBody CreateExpenseRequest request) {
+        
         return new ResponseEntity<>(expenseService.createExpense(request), HttpStatus.CREATED);
     }
 
