@@ -2,6 +2,7 @@ package com.paycircle.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
+
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
@@ -15,10 +16,12 @@ public class OpenApiConfig {
 
     @Bean
     public OpenAPI customOpenAPI() {
+        
         final String securitySchemeName = "bearerAuth";
         return new OpenAPI()
                 .info(new Info()
                         .title("PayCircle REST API")
+                      
                         .version("1.0.0")
                         .description("Split Smart. Pay Fair. Stay Connected. Complete backend REST API documentation for PayCircle group expense management, settlement engine, UPI payment requests, and budget analytics.")
                         .contact(new Contact().name("PayCircle Engineering").email("support@paycircle.app"))
