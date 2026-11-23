@@ -7,6 +7,7 @@ import com.paycircle.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @Tag(name = "Authentication", description = "Endpoints for user registration and JWT authentication")
 public class AuthController {
+    
 
     private final AuthService authService;
 
@@ -24,6 +26,7 @@ public class AuthController {
     @Operation(summary = "Register a new user", description = "Creates a new user profile with unique email and phone number")
     public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterRequest request) {
         AuthResponse response = authService.register(request);
+        
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
