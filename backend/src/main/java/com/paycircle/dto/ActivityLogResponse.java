@@ -13,11 +13,15 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ActivityLogResponse {
+    
     private Long id;
     private Long groupId;
+    
     private String groupName;
+    
     private UserSummaryResponse user;
     private ActivityType type;
+    
     private String description;
     private LocalDateTime createdAt;
 }
