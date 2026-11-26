@@ -10,6 +10,7 @@ const api = axios.create({
 // Interceptor to attach JWT token
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('paycircle_token');
+  
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -35,6 +36,7 @@ api.interceptors.response.use(
 
 export const authAPI = {
   login: (data) => api.post('/auth/login', data),
+  
   register: (data) => api.post('/auth/register', data),
 };
 
@@ -42,6 +44,7 @@ export const userAPI = {
   getProfile: () => api.get('/users/me'),
   getUserById: (id) => api.get(`/users/${id}`),
   updateProfile: (data) => api.put('/users/me', data),
+  
   searchUsers: (query) => api.get(`/users/search?query=${encodeURIComponent(query)}`),
 };
 
@@ -51,12 +54,14 @@ export const groupAPI = {
   createGroup: (data) => api.post('/groups', data),
   updateGroup: (id, data) => api.put(`/groups/${id}`, data),
   addMember: (groupId, data) => api.post(`/groups/${groupId}/members`, data),
+  
   removeMember: (groupId, userId) => api.delete(`/groups/${groupId}/members/${userId}`),
 };
 
 export const expenseAPI = {
   getGroupExpenses: (groupId) => api.get(`/expenses/group/${groupId}`),
   getUserExpenses: () => api.get('/expenses/my'),
+  
   getExpenseById: (id) => api.get(`/expenses/${id}`),
   createExpense: (data) => api.post('/expenses', data),
   deleteExpense: (id) => api.delete(`/expenses/${id}`),
